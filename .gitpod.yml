@@ -2,8 +2,16 @@
 # Please adjust to your needs (see https://www.gitpod.io/docs/config-gitpod-file)
 # and commit this file to your remote git repository to share the goodness with others.
 
+image:
+  file: .gitpod.Dockerfile
+ports:
+  - port: 3000-8999
+    onOpen: notify
 tasks:
   - init: npm install && npm run build
     command: npm run start
-
-
+  - name: GanacheCLI
+    init:  >
+      npm install -g ganache-cli &&
+      gp sync-done stepone
+  - init: npm install web3
